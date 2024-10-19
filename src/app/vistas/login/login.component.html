@@ -1,0 +1,30 @@
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <!-- Icon -->
+    <div class="fadeIn first">
+      <img src="assets/logo.png" id="icon" alt="User Icon" />
+    </div>
+
+    <!-- Login Form -->
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <input type="email" id="login" class="fadeIn second" placeholder="login" formControlName="usuario" />
+      <input type="password" id="password" class="fadeIn third" placeholder="password" formControlName="password" />
+      <input type="submit" class="fadeIn fourth" value="Log In" />
+    </form>
+
+    <!-- Remind Password -->
+    <div class="alert alert-danger" *ngIf="errorStatus">
+      {{ errorMsj }}
+    </div>
+    <!-- Enlace de registro -->
+    <div class="fadeIn fifth">
+      <p>No tienes una cuenta? <a href="/register" class="text-primary">Regístrate aquí</a></p>
+    </div>
+
+  </div>
+</div>

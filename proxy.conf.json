@@ -1,0 +1,8 @@
+{
+  "/api": {
+    "target": "http://localhost/sistema_registro",
+    "secure": false,
+    "changeOrigin": true,
+    "logLevel": "debug"
+  }
+}
