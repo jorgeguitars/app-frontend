@@ -7,6 +7,7 @@ import { HttpClient,HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { PostnuevoI } from '../../models/post.interface';
 import { PostResponse } from '../../models/post.response.interface';
+import { RegistroNuevoI } from '../../models/registro.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -23,26 +24,34 @@ loginByEmail(form:LoginI):Observable<LoginResponse>{
     return this.http.post<LoginResponse>(direccion,form)
         }
 
+getAllPosts(): Observable<any> {
+  let direccion = this.url + "post.php"
+  return this.http.get<PostI[]>(direccion);
+ }
 
-        getAllPosts(): Observable<any> {
-            let direccion = this.url + "post.php"
-            return this.http.get<PostI[]>(direccion);
-                }
+getAllCategories(): Observable<any> {
+  let direccion = this.url + "categories.php"
+  return this.http.get<CategoriasI[]>(direccion);
+   }
 
-                getAllCategories(): Observable<any> {
-                    let direccion = this.url + "categories.php"
-                    return this.http.get<CategoriasI[]>(direccion);
-                        }
+ // Método para crear un nuevo post
+createPost(form: PostnuevoI): Observable<PostResponse> {
+ let direccion = this.url + "post.php";
+  return this.http.post<PostResponse>(direccion, form, {
+  headers: {
+   'Content-Type': 'application/json' // Asegúrate de que el contenido sea JSON
+    }
+   });
+  }
 
-                        // Método para crear un nuevo post
-                        createPost(form: PostnuevoI): Observable<PostResponse> {
-                          let direccion = this.url + "post.php";
-                          return this.http.post<PostResponse>(direccion, form, {
-                              headers: {
-                                  'Content-Type': 'application/json' // Asegúrate de que el contenido sea JSON
-                              }
-                          });
-                      }
-
-
+  createRegistro(form: RegistroNuevoI): Observable<PostResponse> {
+    let direccion = this.url + "register.php";
+     return this.http.post<PostResponse>(direccion, form, {
+     headers: {
+      'Content-Type': 'application/json' // Asegúrate de que el contenido sea JSON
+       }
+      });
      }
+
+
+ }

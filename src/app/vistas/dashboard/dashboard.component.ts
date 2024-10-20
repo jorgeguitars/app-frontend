@@ -18,6 +18,8 @@ export class DashboardComponent implements OnInit {
   constructor(private api: ApiService, private router: Router) {}
 
   ngOnInit(): void {
+    this.checkSession(); // Verifica la sesión al inicializar
+
     this.api.getAllPosts().subscribe(data => {
       this.posts = data;
       this.filteredPosts = data; // Inicialmente muestra todos los posts
@@ -34,6 +36,16 @@ export class DashboardComponent implements OnInit {
     });
   }
 
+  checkSession() {
+    const userid = localStorage.getItem('userid');
+
+    if (!userid) {
+      console.error('No se encontró userid en localStorage');
+      alert('Debes iniciar sesión para acceder al dashboard.'); // Mensaje al usuario
+      this.router.navigate(['/login']); // Cambia la ruta según tu aplicación
+    }
+  }
+
   filterPosts(): void {
     const selectedCategory = (document.getElementById('categoryFilter') as HTMLSelectElement).value;
     this.selectedCategory = selectedCategory;
@@ -43,6 +55,4 @@ export class DashboardComponent implements OnInit {
       selectedCategoryId ? post.categoryid === selectedCategoryId : true
     );
   }
-
-
 }

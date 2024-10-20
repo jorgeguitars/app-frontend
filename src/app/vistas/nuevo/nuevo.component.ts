@@ -38,6 +38,7 @@ export class NuevoComponent implements OnInit {
     } else {
       console.error('No se encontró userid en la sesión');
       alert('Debes iniciar sesión para crear un post.'); // Mensaje al usuario
+      this.router.navigate(['/login']);
     }
   }
 
