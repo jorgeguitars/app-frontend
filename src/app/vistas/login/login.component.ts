@@ -31,9 +31,9 @@ export class LoginComponent implements OnInit {
   }
 
   checkLocalStorage() {
-    const userName = localStorage.getItem('userName');
+    const userid = localStorage.getItem('userid');
 
-    if (userName) {
+    if (userid) {
       this.router.navigate(['dashboard']);
     }
   }
@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
         if (data.user && data.user.success) {
 
 
-        localStorage.setItem('userName', data.user.name);
+          localStorage.setItem('userid', data.user.id.toString());
           // Redirigir al dashboard
           this.router.navigate(['/dashboard']);
         } else {

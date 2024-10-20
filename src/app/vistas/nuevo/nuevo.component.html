@@ -1,0 +1,41 @@
+<app-header></app-header>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Crear Nuevo Post</h2>
+
+  <form [formGroup]="nuevoForm" (ngSubmit)="postForm(nuevoForm.value)">
+    <div class="form-group">
+      <label for="postTitle">Título</label>
+      <input type="text" class="form-control" id="postTitle" formControlName="title" placeholder="Escribe el título">
+      <div *ngIf="nuevoForm.get('title')?.invalid && (nuevoForm.get('title')?.dirty || nuevoForm.get('title')?.touched)">
+        <small class="text-danger">El título es obligatorio.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="postContent">Contenido</label>
+      <textarea class="form-control" id="postContent" formControlName="content" rows="3" placeholder="Escribe el contenido"></textarea>
+      <div *ngIf="nuevoForm.get('content')?.invalid && (nuevoForm.get('content')?.dirty || nuevoForm.get('content')?.touched)">
+        <small class="text-danger">El contenido es obligatorio.</small>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="categorySelect">Categoría</label>
+      <select class="form-control" id="categorySelect" formControlName="category_id" required>
+        <option value="" disabled selected>Selecciona una categoría</option>
+        <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria.name }}</option>
+      </select>
+      <div *ngIf="nuevoForm.get('category_id')?.invalid && (nuevoForm.get('category_id')?.dirty || nuevoForm.get('category_id')?.touched)">
+        <small class="text-danger">Seleccione una categoría.</small>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary btn-sm" [disabled]="nuevoForm.invalid">Crear Post</button>
+  </form>
+</div>
+
+<app-footer></app-footer>

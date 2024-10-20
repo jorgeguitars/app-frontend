@@ -8,8 +8,8 @@ import { HeaderComponent } from './plantillas/header/header.component';
 import { FooterComponent } from './plantillas/footer/footer.component';
 
 import { ReactiveFormsModule, FormsModule} from '@angular/forms';
-//import { HttpClientModule} from '@angular/common/http';
 import { provideHttpClient } from '@angular/common/http';
+
 
 
 
@@ -20,6 +20,7 @@ import { provideHttpClient } from '@angular/common/http';
     HeaderComponent,
     FooterComponent,
     routingComponents,
+
 
   ],
   imports: [

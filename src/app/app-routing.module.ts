@@ -4,6 +4,8 @@ import { LoginComponent } from './vistas/login/login.component';
 import { DashboardComponent } from './vistas/dashboard/dashboard.component';
 import { RegistroComponent } from './vistas/registro/registro.component';
 import { PostsComponent} from './vistas/posts/posts.component';
+import { NuevoComponent } from './vistas/nuevo/nuevo.component';
+
 
 
 const routes: Routes = [
@@ -12,6 +14,7 @@ const routes: Routes = [
   { path:'dashboard' , component:DashboardComponent},
   { path:'registro' , component:RegistroComponent},
   { path:'post' , component:PostsComponent},
+  { path:'nuevo' , component:NuevoComponent},
 ];
 
 @NgModule({
@@ -19,4 +22,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-export const routingComponents =[LoginComponent,DashboardComponent,RegistroComponent,PostsComponent]
+export const routingComponents =[LoginComponent,DashboardComponent,RegistroComponent,PostsComponent,NuevoComponent]

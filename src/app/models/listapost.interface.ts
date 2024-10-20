@@ -3,6 +3,7 @@ export interface PostI {
   title: string;
   content:string;
   categoryid: number;
+  category:string;
   author: string;
 
 }

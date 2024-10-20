@@ -1,34 +1,38 @@
 <app-header></app-header>
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
 <div class="container">
     <div class="row">
         <div class="col-md-8">
             <div class="mb-4">
                 <label for="categoryFilter" class="form-label">Filtrar por categoría:</label>
-                <select id="categoryFilter" class="form-select" aria-label="Select category" onchange="filterPosts()">
+                <select id="categoryFilter" class="form-select" aria-label="Select category" (change)="filterPosts()">
                     <option value="">Todas las categorías</option>
-                    <option value="category1">Categoría 1</option>
-                    <option value="category2">Categoría 2</option>
-                    <option value="category3">Categoría 3</option>
-                    <option value="category4">Categoría 4</option>
+                    <option *ngFor="let categoria of categorias" [value]="categoria.id">{{ categoria . name }}</option>
                 </select>
             </div>
-
+            <!-- Botón para crear un nuevo post -->
+            <div class="mb-4">
+                <a href="/nuevo" class="btn btn-primary">Crear Nuevo Post</a>
+            </div>
+            <!-- Aquí muestra los posts filtrados -->
             <div class="row" id="postContainer">
-                <div class="col-12 mb-4" *ngFor="let post of posts">
-                    <div class="card" style="border: 1px solid #ccc; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);"> <!-- Tarjeta con sombra -->
+                <div class="col-12 mb-4" *ngFor="let post of filteredPosts">
+                    <div class="card"
+                        style="border: 1px solid #ccc; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);">
                         <div class="media mb-3">
-                            <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15" src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Image Description">
+                            <img class="d-flex g-width-50 g-height-50 rounded-circle g-mt-3 g-mr-15"
+                                src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Image Description">
                             <div class="media-body">
-                                <h5 class="h5 g-color-gray-dark-v1 mb-0">{{ post.author }}</h5>
+                                <h5 class="h5 g-color-gray-dark-v1 mb-0">{{ post . author }}</h5>
                                 <span class="text-muted" style="font-size: 0.9em;">5 days ago</span>
                             </div>
                         </div>
 
-                        <h6 class="card-title" style="font-size: 1.25em; margin-bottom: 10px;">{{ post.title }}</h6> <!-- Título del post -->
-                        <p class="card-text"><strong>Categoría:</strong> {{ post.categoryid }}</p> <!-- Mostrar categoría -->
-                        <p class="card-text">{{ post.content }}</p>
+                        <h6 class="card-title" style="font-size: 1.25em; margin-bottom: 10px;">{{ post . title }}</h6>
+                        <p class="card-text"><strong>Categoría:</strong> {{ post . category }}</p>
+                        <p class="card-text">{{ post . content }}</p>
 
                         <ul class="list-inline d-sm-flex my-0 mt-3">
                             <li class="list-inline-item mr-3">
@@ -53,27 +57,13 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Botón para crear un nuevo post -->
+            <div class="mb-4">
+                <a href="create-post.html" class="btn btn-primary">Crear Nuevo Post</a>
+            </div>
         </div>
     </div>
 </div>
-
-<script>
-    function filterPosts() {
-        const filterValue = document.getElementById('categoryFilter').value.toLowerCase();
-        const posts = document.querySelectorAll('#postContainer .col-12');
-
-        posts.forEach(post => {
-            const category = post.querySelector('.card-text strong').nextSibling.nodeValue.trim().toLowerCase();
-            if (filterValue === '' || category === filterValue) {
-                post.style.display = ''; // Mostrar el post
-            } else {
-                post.style.display = 'none'; // Ocultar el post
-            }
-        });
-    }
-</script>
-
-
-
 
 <app-footer></app-footer>
